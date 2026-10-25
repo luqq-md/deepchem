@@ -69,7 +69,9 @@ def test_graph_conv_model():
 
 @pytest.mark.torch
 def test_neural_fingerprint_retrieval():
-    tasks, dataset, _, _ = get_dataset('classification', 'GraphConv', data_points=23)
+    tasks, dataset, _, _ = get_dataset('classification',
+                                       'GraphConv',
+                                       data_points=23)
     fp_size = 3
     batch_size = 10
     model = GraphConvModel(len(tasks),
@@ -81,6 +83,7 @@ def test_neural_fingerprint_retrieval():
     model.fit(dataset, nb_epoch=1)
     neural_fingerprints = np.array(model.predict_embedding(dataset))
     assert neural_fingerprints.shape == (len(dataset), fp_size * 2)
+
 
 @flaky
 @pytest.mark.torch
